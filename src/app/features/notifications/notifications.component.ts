@@ -1,0 +1,6 @@
+import { Component, inject } from '@angular/core';
+import { BusinessDataService } from '../../core/services/business-data.service';
+@Component({selector:'app-notifications',standalone:true,template:`
+<div class="page-head"><div><div class="eyebrow">WORKSPACE</div><h1>Notifications</h1><p>Changes that need your attention, without the noise.</p></div><button class="secondary" (click)="markAllRead()">Mark all read</button></div>
+<article class="panel notifications-list">@for(note of data.notifications();track note.id){<button class="notification-row" [class.unread]="note.unread" (click)="data.markNotificationRead(note.id)" [attr.aria-label]="(note.unread ? 'Mark as read: ' : 'Notification: ') + note.title"><span class="notification-icon" [attr.data-type]="note.type"></span><span><strong>{{note.title}}</strong><small>{{note.message}}</small><em>{{note.when}}</em></span>@if(note.unread){<b aria-label="Unread"></b>}</button>}@empty{<div class="empty-state"><strong>You are all caught up</strong><span>New workspace activity will appear here.</span></div>}</article>`})
+export class NotificationsComponent{readonly data=inject(BusinessDataService);markAllRead(){this.data.notifications().filter(n=>n.unread).forEach(n=>this.data.markNotificationRead(n.id));}}
