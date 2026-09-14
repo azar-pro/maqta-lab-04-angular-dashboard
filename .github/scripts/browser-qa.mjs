@@ -106,6 +106,7 @@ try {
   await mobile.waitForFunction(() => !document.querySelector('.sidebar.open'), { timeout: 2000 });
   await check('mobile menu closes after navigation', async () => !Boolean(await mobile.$('.sidebar.open')));
   await check('mobile projects no page overflow', async () => mobile.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1));
+  await new Promise(resolve => setTimeout(resolve, 300));
   await mobile.screenshot({ path: 'qa/screenshots/07-projects-mobile.png', fullPage: true });
 } catch (error) {
   fatalError = error;
