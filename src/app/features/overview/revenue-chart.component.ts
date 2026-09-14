@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler } from 'chart.js';
+import { Chart, CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip, Filler } from 'chart.js';
 
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, LineController, Tooltip, Filler);
 
 @Component({
   selector: 'app-revenue-chart',
