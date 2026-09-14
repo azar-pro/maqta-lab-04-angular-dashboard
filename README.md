@@ -15,6 +15,16 @@ RIVET is designed around a real operations-manager workflow: tracking projects, 
 
 The login form is prefilled for quick portfolio review.
 
+## Production deployment
+
+Vercel accepted the current production deployment with status **READY**.
+
+**Production alias:** https://rivet-operations-workspace-meryf2026-1383.vercel.app
+
+Deployment ID: `dpl_BDFVP6Eaxf4yBpujgXC12NFso1VT`
+
+The release environment used here cannot independently resolve the public Vercel hostname, and the connected Vercel read endpoints currently return inconsistent 404s after successful deployment creation. For that reason the URL is documented as **Vercel READY**, while independent public-browser and deep-link verification remain separate unchecked release gates rather than being falsely claimed as complete.
+
 ## Product highlights
 
 - Operations overview with KPIs, revenue chart, project pipeline, risk signals and task queue
@@ -89,6 +99,7 @@ The current `main` branch is verified by GitHub Actions on Node **22.22.3**.
 - ✅ No global horizontal page overflow in tested desktop/tablet/mobile views
 - ✅ Browser report: **0 console errors, 0 page errors, 0 request failures**
 - ✅ Production bundle automatically published to the `dist` branch after successful CI
+- ✅ Vercel production deployment creation returned **READY**
 
 ### Production bundle
 
@@ -97,8 +108,6 @@ Latest verified build:
 - Initial raw bundle: **271.64 kB**
 - Estimated initial transfer: **73.65 kB**
 - Production artifact: 21 files
-
-A live hosting URL is intentionally not listed here yet. The application build and QA are verified; the final public deployment is a separate release gate and will only be added after the hosted URL is independently verified.
 
 ## Browser QA coverage
 
