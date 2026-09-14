@@ -1,27 +1,52 @@
 # RIVET — Operations Workspace
 
-Angular business dashboard created as **MAQTA Lab Project 04**. RIVET is a portfolio-grade internal operations product for a small commercial fit-out / services company. It demonstrates data-dense product UI, routing, reusable state, TypeScript architecture, forms, charts, responsive layouts and accessibility-minded interaction patterns.
+![CI](https://github.com/azar-pro/maqta-lab-04-angular-dashboard/actions/workflows/ci.yml/badge.svg)
 
-## Current scope — Sprint 03
+**MAQTA Lab Project 04** — a portfolio-grade Angular operations workspace for a fictional commercial fit-out / design-build company.
 
-- Demo login and route guard
-- Responsive application shell + mobile drawer
-- Light / dark theme persistence
-- Overview with KPI hierarchy, revenue chart, risk list, project pipeline and task queue
-- Projects: search, status filter, owner filter, progress, summary metrics, detail routes and missing-record state
-- Customers: searchable CRM table, status filter, customer details and related active projects
-- Inventory: procurement / material table, search, stock-state filters and stock metrics
-- Tasks: open/completed/all views, priority filter and local task completion state
-- Notifications: unread state, mark read and live unread count in navigation
+RIVET is designed around a real operations-manager workflow: tracking projects, customers, materials, tasks, risk, revenue and daily follow-up in one calm, data-dense product UI.
+
+> This is a fictional portfolio product, not a client project.
+
+## Demo
+
+**Email:** `hello@rivet.demo`  
+**Password:** `rivet123`
+
+The login form is prefilled for quick portfolio review.
+
+## Product highlights
+
+- Operations overview with KPIs, revenue chart, project pipeline, risk signals and task queue
+- Projects with search, status/owner filters, detail routes, create/edit workflows and project-update copy action
+- Customers CRM with searchable records, detail pages, related projects, notes and active-project counts
+- Inventory / procurement tracking with stock metrics, filters and derived stock states
+- Tasks with open/completed/all views, priority filtering, creation and completion toggles
+- Notifications with unread state and live navigation badge
 - Global search across projects, customers, tasks and inventory
-- Settings using Reactive Forms and local persistence
-- Profile and 404 page
-- Responsive breakpoints for desktop, tablet and mobile
-- Empty states, error/skeleton visual primitives ready for async repository states
+- Reactive settings with local persistence
+- Light/dark themes with persistence and Chart.js theme updates
+- Async repository layer with loading, error and retry states
+- Responsive desktop, tablet and mobile application shell
+- Accessible focus states, reduced-motion support and semantic error/loading states
+- Demo CSV export and realistic local CRUD-style workflows
+
+## Stack
+
+- Angular 22 — standalone architecture
+- TypeScript
+- Angular Router + lazy routes
+- Signals for local application state
+- Reactive Forms
+- Chart.js
+- Repository/service abstraction over mock data
+- Jasmine + Karma
+- Puppeteer browser QA
+- GitHub Actions CI
 
 ## Architecture
 
-The UI depends on `BusinessDataService`, not directly on seed data. That service owns writable signals and exposes readonly state to feature components. The current repository source is local mock data; it can later be replaced by HTTP repositories without rewriting the feature UI.
+Feature components do not import seed data directly. `BusinessDataService` is the UI-facing state layer and consumes a mock repository boundary, so a later HTTP/API repository can replace the local source without restructuring feature screens.
 
 ```text
 src/app/
@@ -44,6 +69,53 @@ src/app/
     └── layout/
 ```
 
+## Verified release status
+
+The current `main` branch is verified by GitHub Actions on Node **22.22.3**.
+
+- ✅ `npm install` — completed with **0 vulnerabilities**
+- ✅ Unit tests — **11/11 passing**
+- ✅ Angular production build
+- ✅ Browser QA — **25/25 checks passing**
+- ✅ Desktop QA — 1440 × 1050
+- ✅ Tablet QA — 768 × 1024
+- ✅ Mobile QA — 390 × 844
+- ✅ Light / dark theme interaction
+- ✅ Invalid-login behavior
+- ✅ Auth guard — direct Angular unit coverage for authenticated and logged-out states
+- ✅ Controlled repository error + retry
+- ✅ Core navigation and new-project dialog
+- ✅ Ctrl/Cmd + K global search
+- ✅ No global horizontal page overflow in tested desktop/tablet/mobile views
+- ✅ Browser report: **0 console errors, 0 page errors, 0 request failures**
+- ✅ Production bundle automatically published to the `dist` branch after successful CI
+
+### Production bundle
+
+Latest verified build:
+
+- Initial raw bundle: **271.64 kB**
+- Estimated initial transfer: **73.65 kB**
+- Production artifact: 21 files
+
+A live hosting URL is intentionally not listed here yet. The application build and QA are verified; the final public deployment is a separate release gate and will only be added after the hosted URL is independently verified.
+
+## Browser QA coverage
+
+The automated browser pass validates:
+
+- login screen + invalid login
+- overview and dark theme
+- Projects / Customers / Inventory / Tasks navigation
+- no global overflow across core desktop pages
+- new-project dialog
+- global-search shortcut
+- controlled error state and retry
+- 768px tablet drawer, overflow and Escape-key close behavior
+- 390px mobile drawer, navigation and Projects layout
+
+Auth guard behavior is tested directly at the Angular unit-test layer rather than through the static QA server.
+
 ## Run locally
 
 ```bash
@@ -51,68 +123,29 @@ npm install
 npm start
 ```
 
-Demo authentication credentials are shown on the login screen.
-
-## Production verification
-
-Run before release:
+## Verify locally
 
 ```bash
-npm run build
 npm test
+npm run build
 ```
 
-A full Angular production build has **not yet been claimed for Sprint 03** because the current execution environment could not finish downloading npm dependencies. A TypeScript syntax transpilation check passes for all source files. Full Angular template/type checking remains a required release gate.
+## QA state preview
 
-## Portfolio release gates
+Settings contains a clearly labeled **Portfolio QA / State preview** control. It deliberately fails the next mock repository request so the production-style global error and retry experience can be reviewed without introducing random failures.
 
-Project 04 is not complete until all of the following pass:
+## Release notes
 
-1. Production build
-2. Angular tests
-3. Desktop visual QA
-4. Tablet/mobile QA
-5. Keyboard + focus QA
-6. Loading/error/empty state QA
-7. Browser console check
-8. Performance review
-9. Final README and case study
-10. GitHub repository verification
-11. Free live deployment outside Netlify
+During browser QA, several real issues were found and fixed rather than hidden:
+
+- mobile table containment causing page-level horizontal overflow
+- missing Chart.js `LineController`
+- chart appearing visually blank during its initial animation
+- missing favicon request
+- drawer-transition timing and tablet navigation behavior
+
+See [`QA-CHECKLIST.md`](QA-CHECKLIST.md) for verified release gates and [`CASE-STUDY.md`](CASE-STUDY.md) for the portfolio case study.
 
 ---
 
 Created by [MAQTA STUDIO](https://maqtastudio.com)
-
-
-## Sprint 03 additions
-
-- Asynchronous repository state with loading, ready and error modes
-- Global skeleton loading experience
-- Controlled error simulation and retry path for QA
-- Unit tests for business data, auth and theme state
-- Repository abstraction separated from UI components
-
-### QA note
-
-The Settings page contains a deliberately labeled **Portfolio QA / State preview** action. It triggers the next repository request to fail so the global error and retry UI can be reviewed without introducing random production failures.
-
-## Sprint 04 — Product workflows
-
-The portfolio build now includes working CRUD-style interactions rather than display-only controls:
-
-- Create a project with Reactive Forms validation and an existing customer relationship.
-- Add a customer and open the new CRM record immediately.
-- Create tasks against active projects.
-- Edit project status, progress, owner, due date, value, scope and risk.
-- Customer active-project counts react to project creation/completion.
-- Project updates can be copied to the clipboard for a realistic operations workflow.
-- Responsive accessible dialog patterns are used for creation/editing flows.
-
-These interactions are intentionally local/mock-backed for Project 04. Project 05 is reserved for demonstrating a real external API integration.
-
-## Sprint 05 — Release readiness
-
-The project now pins a supported Angular 22 Node runtime via `.nvmrc` and `package.json` engines, includes GitHub Actions CI for unit tests + production build, and includes Vercel SPA routing configuration. Table semantics and chart theme behavior received an additional accessibility/visual polish pass.
-
-> Build status is intentionally not marked as passing in this workspace: external npm registry access is unavailable here, so Angular dependencies cannot be installed. The included CI workflow is the next authoritative release gate once the repository is created/pushed.
