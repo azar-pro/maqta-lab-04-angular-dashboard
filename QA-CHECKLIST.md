@@ -64,14 +64,24 @@ Verified against the current Angular production build through GitHub Actions, An
 - [x] Browser automated checks: **25/25 passing**
 - [x] Unit tests: **11/11 passing**
 
+## Deployment
+- [x] Production deployment created on Vercel
+- [x] Vercel returned deployment status **READY**
+- [x] Production alias assigned: `https://rivet-operations-workspace-meryf2026-1383.vercel.app`
+- [x] Major SPA route shells included in the direct deployment to reduce deep-link 404 risk
+- [ ] Public live demo URL independently opened from an external browser environment
+- [ ] Production deep-link/reload behavior independently verified on the public host
+
+Deployment ID: `dpl_BDFVP6Eaxf4yBpujgXC12NFso1VT`
+
+The connected Vercel read endpoints currently return inconsistent 404s after successful deployment creation, and the local release environment cannot resolve external DNS. Therefore the deployment is recorded as **Vercel READY**, but external browser verification is intentionally not marked complete.
+
 ## Release artifacts
 - [x] Automated screenshots captured for login, overview, dark overview, tasks, project dialog, error state, tablet, mobile overview, mobile drawer and mobile Projects
 - [x] README updated with verified release facts only
 - [x] Case study prepared
 - [x] GitHub `main` contains production-ready source
 - [x] GitHub `dist` contains the successful production bundle
-- [ ] Public live demo URL independently verified
-- [ ] Production deep-link/reload behavior verified on the final public host
 
 ## Still worth manual review before portfolio lock
 
@@ -85,5 +95,5 @@ The automated suite is intentionally not presented as proof of things it has not
 
 ## Release status
 
-**Application build, automated functional QA, responsive QA and GitHub release artifacts: PASS.**  
-**Public hosting verification: pending.**
+**Application build, automated functional QA, responsive QA, GitHub release artifacts and Vercel deployment creation: PASS.**  
+**Independent public-host browser verification: pending.**
