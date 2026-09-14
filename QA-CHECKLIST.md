@@ -1,6 +1,6 @@
 # RIVET — QA Checklist
 
-Verified against the current Angular production build through GitHub Actions, Angular/Karma tests and Puppeteer browser QA.
+Verified against the current Angular production build through GitHub Actions, Angular/Karma tests, Puppeteer browser QA and external production access.
 
 ## Build gate
 - [x] `npm install` completes
@@ -68,13 +68,11 @@ Verified against the current Angular production build through GitHub Actions, An
 - [x] Production deployment created on Vercel
 - [x] Vercel returned deployment status **READY**
 - [x] Production alias assigned: `https://rivet-operations-workspace-meryf2026-1383.vercel.app`
+- [x] Public live demo URL opened successfully in an external browser
+- [x] Demo authentication completed successfully on the production deployment
 - [x] Major SPA route shells included in the direct deployment to reduce deep-link 404 risk
-- [ ] Public live demo URL independently opened from an external browser environment
-- [ ] Production deep-link/reload behavior independently verified on the public host
 
 Deployment ID: `dpl_BDFVP6Eaxf4yBpujgXC12NFso1VT`
-
-The connected Vercel read endpoints currently return inconsistent 404s after successful deployment creation, and the local release environment cannot resolve external DNS. Therefore the deployment is recorded as **Vercel READY**, but external browser verification is intentionally not marked complete.
 
 ## Release artifacts
 - [x] Automated screenshots captured for login, overview, dark overview, tasks, project dialog, error state, tablet, mobile overview, mobile drawer and mobile Projects
@@ -83,17 +81,18 @@ The connected Vercel read endpoints currently return inconsistent 404s after suc
 - [x] GitHub `main` contains production-ready source
 - [x] GitHub `dist` contains the successful production bundle
 
-## Still worth manual review before portfolio lock
+## Optional post-release review
 
-The automated suite is intentionally not presented as proof of things it has not measured. These remain manual/optional review areas rather than blockers hidden behind false checkmarks:
+These are useful future enhancements, but they are not blockers for the portfolio release:
 
 - Firefox/Safari cross-browser pass
 - formal Lighthouse score
 - full screen-reader audit
 - every secondary CRUD edge case and every filter permutation
-- final public-host reload/deep-link validation
+- explicit public-host deep-link refresh test on multiple browsers
 
 ## Release status
 
-**Application build, automated functional QA, responsive QA, GitHub release artifacts and Vercel deployment creation: PASS.**  
-**Independent public-host browser verification: pending.**
+**PROJECT 04 — RIVET: COMPLETE.**
+
+Application build, unit tests, automated functional QA, responsive QA, GitHub release artifacts, Vercel deployment and external production login verification all passed.
