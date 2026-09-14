@@ -43,6 +43,7 @@ export class RevenueChartComponent implements AfterViewInit, OnDestroy {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animation: false,
         plugins: { legend: { display: false } },
         scales: {
           x: { grid: { display: false }, ticks: { color: muted } },
