@@ -42,13 +42,6 @@ jobs:
       - name: Install browser QA driver
         run: npm install --no-save puppeteer-core@latest
 
-      - name: Prepare browser QA script
-        run: |
-          sed -i "/await desktop.type('input\[type=email\]'/d" .github/scripts/browser-qa.mjs
-          sed -i "/await desktop.type('input\[type=password\]'/d" .github/scripts/browser-qa.mjs
-          sed -i "s|await mobile.reload({ waitUntil: 'networkidle0' });|await mobile.goto(base, { waitUntil: 'networkidle0', timeout: 20000 });|" .github/scripts/browser-qa.mjs
-          sed -i "/await mobile.waitForSelector('.sidebar.open');/a\\await new Promise(resolve => setTimeout(resolve, 300));" .github/scripts/browser-qa.mjs
-
       - name: Run browser QA
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 --directory dist/rivetworkspace/browser >/tmp/rivet-http.log 2>&1 &
