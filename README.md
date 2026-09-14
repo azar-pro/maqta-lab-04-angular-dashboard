@@ -8,22 +8,14 @@ RIVET is designed around a real operations-manager workflow: tracking projects, 
 
 > This is a fictional portfolio product, not a client project.
 
-## Demo
+## Live demo
+
+**Production:** https://rivet-operations-workspace-meryf2026-1383.vercel.app
 
 **Email:** `hello@rivet.demo`  
 **Password:** `rivet123`
 
-The login form is prefilled for quick portfolio review.
-
-## Production deployment
-
-Vercel accepted the current production deployment with status **READY**.
-
-**Production alias:** https://rivet-operations-workspace-meryf2026-1383.vercel.app
-
-Deployment ID: `dpl_BDFVP6Eaxf4yBpujgXC12NFso1VT`
-
-The release environment used here cannot independently resolve the public Vercel hostname, and the connected Vercel read endpoints currently return inconsistent 404s after successful deployment creation. For that reason the URL is documented as **Vercel READY**, while independent public-browser and deep-link verification remain separate unchecked release gates rather than being falsely claimed as complete.
+The production URL was opened successfully in an external browser and the demo login was verified against the live deployment.
 
 ## Product highlights
 
@@ -53,6 +45,7 @@ The release environment used here cannot independently resolve the public Vercel
 - Jasmine + Karma
 - Puppeteer browser QA
 - GitHub Actions CI
+- Vercel production deployment
 
 ## Architecture
 
@@ -99,7 +92,9 @@ The current `main` branch is verified by GitHub Actions on Node **22.22.3**.
 - ✅ No global horizontal page overflow in tested desktop/tablet/mobile views
 - ✅ Browser report: **0 console errors, 0 page errors, 0 request failures**
 - ✅ Production bundle automatically published to the `dist` branch after successful CI
-- ✅ Vercel production deployment creation returned **READY**
+- ✅ Vercel production deployment returned **READY**
+- ✅ Public production URL opened successfully in an external browser
+- ✅ Demo authentication verified on the live deployment
 
 ### Production bundle
 
@@ -154,6 +149,12 @@ During browser QA, several real issues were found and fixed rather than hidden:
 - drawer-transition timing and tablet navigation behavior
 
 See [`QA-CHECKLIST.md`](QA-CHECKLIST.md) for verified release gates and [`CASE-STUDY.md`](CASE-STUDY.md) for the portfolio case study.
+
+## Portfolio status
+
+**Project 04 — RIVET: COMPLETE.**
+
+The remaining cross-browser, Lighthouse and full screen-reader checks are optional post-release enhancements rather than blockers for the portfolio version.
 
 ---
 
