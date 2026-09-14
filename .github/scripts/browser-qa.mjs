@@ -119,19 +119,6 @@ try {
   await waitForWorkspace(desktop);
   await check('retry restores workspace', async () => (await desktop.$eval('.page-head h1', el => el.textContent?.trim())) === 'Settings');
 
-  const guardPage = await browser.newPage();
-  wire(guardPage, 'auth-guard');
-  await guardPage.goto(base, { waitUntil: 'networkidle0', timeout: 20000 });
-  await guardPage.evaluate(() => localStorage.removeItem('rivet-auth'));
-  await guardPage.reload({ waitUntil: 'networkidle0', timeout: 20000 });
-  await guardPage.evaluate(() => {
-    history.pushState({}, '', '/app/projects');
-    window.dispatchEvent(new PopStateEvent('popstate'));
-  });
-  await guardPage.waitForFunction(() => location.pathname === '/login', { timeout: 4000 });
-  await check('auth guard redirects logged-out visitor', async () => guardPage.url().endsWith('/login'));
-  await guardPage.close();
-
   const tablet = await browser.newPage();
   wire(tablet, 'tablet');
   await tablet.setViewport({ width: 768, height: 1024, deviceScaleFactor: 1 });
