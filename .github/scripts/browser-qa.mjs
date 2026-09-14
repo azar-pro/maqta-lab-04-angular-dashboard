@@ -124,7 +124,10 @@ try {
   await guardPage.goto(base, { waitUntil: 'networkidle0', timeout: 20000 });
   await guardPage.evaluate(() => localStorage.removeItem('rivet-auth'));
   await guardPage.reload({ waitUntil: 'networkidle0', timeout: 20000 });
-  await guardPage.goto(`${base}app/projects`, { waitUntil: 'networkidle0', timeout: 20000 });
+  await guardPage.evaluate(() => {
+    history.pushState({}, '', '/app/projects');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  });
   await guardPage.waitForFunction(() => location.pathname === '/login', { timeout: 4000 });
   await check('auth guard redirects logged-out visitor', async () => guardPage.url().endsWith('/login'));
   await guardPage.close();
