@@ -64,7 +64,7 @@ jobs:
           cp -R dist/rivetworkspace/browser /tmp/rivet-dist
           cp qa/screenshots/02-overview-desktop.png /tmp/rivet-dist/portfolio-preview.png
           git config user.name "github-actions[bot]"
-          git config user.email "4189826+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch --orphan dist
           find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
           cp -R /tmp/rivet-dist/. .
